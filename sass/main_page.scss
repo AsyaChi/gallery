@@ -1,0 +1,89 @@
+@import "partials/reset.scss";
+@import "partials/_typography.scss";
+html{
+	width: 100%;
+	height: 100%;
+	font-size: 62.5%;
+}
+#all-site-grid-wrap{
+	display: grid;
+	grid-template-columns: 80px 1fr 80px;
+	grid-template-rows:3rem 1fr 2fr 1fr 3rem;
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+.all-site-header{
+	grid-column: 2;
+	grid-row: 2;
+	z-index: 1;
+	font: bold 3rem $header-font-family;
+	color: #fff;
+}
+#video-container{
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	z-index: 0;
+}
+//плавающая рыбка
+.ugly-fish{
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+  
+    img{
+    	width: 30%;
+    	position: absolute;
+    	left: 0;
+		bottom: 0;
+    	backface-visibility: visible;
+    	transform: rotateY(180deg);
+    	animation: swimmingfish 20s linear infinite, up-down 5s linear infinite;
+    	@media (min-width: 900px){
+    		width: 20%;
+
+    	}
+    }
+	
+}
+@keyframes up-down{
+	from { bottom: 0; }
+	50% { bottom: 5%;}
+	100% { bottom: 0; }
+}
+@keyframes swimmingfish{
+	from{
+		transform: translateX(0) rotateY(180deg);
+		
+	}
+	50%{
+		transform: translateX(80em) rotateY(180deg);
+		
+	}
+	51%{ transform: translateX(80em) rotateY(0)}
+	100%{
+		
+    	transform: translateX(0) rotateY(0);
+	}
+}
+@media (max-width: 950px){
+	@keyframes swimmingfish{
+	from{
+		transform: translateX(0) rotateY(180deg);
+		
+	}
+	50%{
+		transform: translateX(200%) rotateY(180deg);
+		
+	}
+	51%{ transform: translateX(200%) rotateY(0)}
+	100%{
+		
+    	transform: translateX(0) rotateY(0);
+	}
+}
+}
