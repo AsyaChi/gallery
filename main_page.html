@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main_page.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Philosopher" rel="stylesheet">
+	
 </head>
 <body>
 	<article id="all-site-grid-wrap">
@@ -18,11 +19,70 @@
 				<source src="video/underwater2.mp4" type="video/mp4">
 			</video>
 			</section>
-		<main></main>
+		<main class="all-site-main">
+			<div class="login">
+				<div class="box-for-cta">
+					<a class="cta-button button" href="#">Войти</a>
+				</div>
+				<div id="pop-up-form" class="overlay">
+					<div class="close-pop-up-button">
+						<a href="#pop-up-form">X</a>
+					</div>
+					<div class="show-forms">
+						
+							
+							<input type="radio" name="sign-button" class="sign-in" checked>
+							<label for="sign-button" class="sign-in">Войти</label>
+							
+							
+						
+						<div id="sign-in" class="sign-form">
+
+							<form action="" method="POST">
+								<fieldset>
+									<legend>Введите логин и пароль</legend>
+									<label for="username"></label>
+									<input type="text" name="username">
+									<label for="password"></label>
+									<input type="password" name="password">
+									<div class="small-buttons">
+									<input type="submit" value="Готово!">
+									<input type="reset" value="Очистить!">
+								</div>
+								</fieldset>
+							</form>
+						</div>
+						<input type="radio" name="sign-button" class="sign-up">
+							<label for="sign-button" class="sign-up">Зарегистрироваться</label>
+						<div id="sign-up" class="sign-form">
+								<form action="" method="POST">
+									<fieldset>
+										<legend>Я новый пользователь</legend>
+										<label for="username"></label>
+										<input type="text" name="username">
+										<label for="password"></label>
+										<input type="password" name="password">
+										<div class="small-buttons">
+											<input type="submit" value="Готово!">
+											<input type="reset" value="Очистить!">
+										</div>
+									</fieldset>
+								</form>
+						</div>
+						<footer>
+							<p>Спасибо за регистрацию</p>
+						</footer>
+					</div>
+			</div>
+				</div>
+			</div>
+				
+		</main>
 		<footer></footer>
 		<section class="ugly-fish">
 			<img src="images/fish.png" alt="ugly fish" class="png-fish">
 		</section>
 	</article>
 </body>
+
 </html>

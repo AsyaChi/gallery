@@ -1,4 +1,6 @@
 @import "partials/reset.scss";
+@import "partials/_buttons.scss";
+@import "partials/_forms.scss";
 @import "partials/_typography.scss";
 html{
 	width: 100%;
@@ -7,14 +9,15 @@ html{
 }
 #all-site-grid-wrap{
 	display: grid;
-	grid-template-columns: 80px 1fr 80px;
+	grid-template-columns: 1fr 3fr 1fr;
 	grid-template-rows:3rem 1fr 2fr 1fr 3rem;
 	position: relative;
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
 }
-.all-site-header{
+.all-site-header
+{
 	grid-column: 2;
 	grid-row: 2;
 	z-index: 1;
@@ -26,6 +29,213 @@ html{
 	grid-row: 1/-1;
 	z-index: 0;
 }
+//block with forms
+.all-site-main{
+	grid-column: 2;
+	grid-row: 3;
+	display: flex;
+	font: normal 2rem $text-font-family;
+	color: #FFF;
+	z-index: 1;
+	a{
+		text-decoration: none;
+		color: #333;
+	
+	&:hover{
+		opacity: .7;
+	}
+	}
+
+}
+//show registration form with button on click
+.login{
+//кнопка показать всплывающее окно регистрации
+	.box-for-cta{
+		display: flex;
+		width: 100%;
+		a.cta-button{
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		a.cta-button:focus,
+		a.cta-button:active{
+			opacity: 0;
+		}
+	}
+//всплывающее окно
+	.overlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		display: grid;
+		grid-template: 1fr 3fr 1fr/ minmax(10px, 1fr) minmax(360px, 600px) minmax(10px, 1fr);
+		background: rgba(0,0,0,.7) url(../images/sea_wonder.jpg) no-repeat center center /cover;
+		background-blend-mode: luminosity;
+		visibility: visible;
+		opacity: 1;
+		transform: scale(1);
+		transition: opasity, transform 500ms linear;
+
+	}
+	.overlay:target{
+		transform: scale(0);
+		opacity: 0;
+		visibility: hidden;
+	}
+
+//кнопка закрыть окно регистрации
+	.close-pop-up-button{
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 1rem;
+		font-weight: 600;
+		color: #333;
+	}
+//формы войти и зарегистрироваться
+.show-forms
+	{
+	grid-column: 2;
+	grid-row: 2;
+	display: grid;
+	grid-template: 20px 1fr 10px 2fr 30px 20px / minmax(10%, 1fr) repeat(4, minmax(20%, 2fr)) minmax(10%, 1fr);
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	font: normal 1.5rem $text-font-family;
+	border-radius: 14px;
+	background: rgba(0,0,0,.1) url(../images/sea_wonder.jpg) no-repeat center center /cover;
+	background-blend-mode: multiply;
+	box-shadow: 0 0 11px 8px rgba(0,0,0,.4);
+	overflow: hidden;
+	@media (min-width: 650px){
+		padding: 2.5rem;
+		width: 80%;
+	}
+    
+	}
+	
+	//buttons to show sing-in and sign-up
+	input.sign-in,
+	label.sign-in{
+		grid-column: 2/3;
+		grid-row: 2;
+		display: block;
+		width: 100%;
+		cursor: pointer;
+		opacity: 1;
+
+	}
+	input.sign-up,
+	label.sign-up{
+		grid-column: 3/5;
+		grid-row: 2;
+		display: block;
+		width: 100%;
+		cursor: pointer;
+		opacity: 1;
+	}
+	input[name=sign-button]{
+		z-index: 10;
+		opacity: 0;
+	}
+	//when radiobutton on click the color of label change
+	input[name=sign-button]:checked + label{
+
+		font-weight: bold;
+		color: #48465C;
+		
+		
+	}
+	//when radiobutton in !NOT on click sign-in form hidden
+	input.sign-in:not(:checked)+label+div{
+		grid-column: 2;
+		grid-row: 4;
+		display: flex;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	//when radiobutton in !NOT on click sign-up form hidden
+	input.sign-up:not(:checked)+label+div{
+		grid-column: 3;
+		grid-row: 4;
+		display: flex;
+		opacity: 0;
+		visibility: hidden;
+	}
+	//when radiobutton in ON CLICK sign-in form hidden
+	input.sign-in:checked+label+div{
+		grid-column: 2/6;
+		grid-row: 4;
+		display: flex;
+		width: 100%;
+		opacity: 1;
+		visibility: visible;
+
+	}
+
+	//when radiobutton in ON CLICK sign-up form hidden
+	input.sign-up:checked+label+div{
+		grid-column: 2/6;
+		grid-row: 4;
+		display: flex;
+		width: 100%;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	//common styles for forms
+	form,
+	fieldset{
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		*{
+			margin-bottom: 1rem;
+		}
+		.small-buttons{
+			display: inline-flex;
+			justify-content: space-around;
+		}
+		input[type="text"],
+		input[type="password"]{
+			margin-left: 1rem;
+		}
+		}
+		
+
+		form:before{
+			content: "";
+			width: 90%;
+			height: 140%;
+			display: block;
+			position: absolute;
+			border-bottom: 1px solid rgba(255,255,255,.9);
+			border-top: 1px solid rgba(255,255,255,.9);
+			
+		}
+		legend{
+			font: bold 3rem $header-font-family;
+			text-align: center;
+		}
+	//footer of pop-up form
+	footer{
+		grid-row: 5;
+		grid-column: 1/-1;
+		text-align: center;
+		padding-top: 5px;
+	}
+	
+	
+}
+
 //плавающая рыбка
 .ugly-fish{
 	grid-column: 1/-1;
@@ -33,7 +243,7 @@ html{
 	position: relative;
 	width: 100%;
 	height: 100%;
-	z-index: 10;
+	z-index: 0;
   
     img{
     	width: 30%;
@@ -42,6 +252,7 @@ html{
 		bottom: 0;
     	backface-visibility: visible;
     	transform: rotateY(180deg);
+    	opacity: .7;
     	animation: swimmingfish 20s linear infinite, up-down 5s linear infinite;
     	@media (min-width: 900px){
     		width: 20%;
